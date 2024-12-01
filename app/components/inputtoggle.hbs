@@ -1,9 +1,0 @@
-<label class="input-container" for="input">
-  <span>Example</span>
-  <div class="switch">
-      <div class="bar"></div>
-      <div class="circle {{if this.input "right" "left"}} {{if this.focused "focused" ""}}"></div>
-  </div>
-  <input type="checkbox" id="input" name="input" value="input" checked={{this.input}} {{on 'click' this.toggle}} {{on 'focusin' this.handleFocusIn}}
-  {{on 'focusout' this.handleFocusOut}}>Personalised Input
-</label>

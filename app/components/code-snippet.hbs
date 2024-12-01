@@ -1,6 +1,8 @@
 <button type="button" class="button" {{on "click" this.toggle}}>{{if this.show "Hide code" "Show code"}}</button>
 {{#if this.show}}
+  <div class="code-snippet">
   {{#let (get-code-snippet @name) as |snippet|}}
     <CodeBlock @code= {{snippet.source}} @language={{snippet.language}} />
   {{/let}}
+  </div>
 {{/if}}

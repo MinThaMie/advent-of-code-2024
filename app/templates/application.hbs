@@ -1,7 +1,14 @@
-{{page-title "AdventOfCode2024"}}
-
+{{page-title "Advent Of Code 2024"}}
+<nav class="navigation">
+  <ul>
+    <LinkTo @route="puzzles.1">1</LinkTo>
+  </ul>
+</nav>
+<div class="content-wrap">
+<h1>Welcome to MinThaMie's advent of code 2024</h1>
 {{outlet}}
-
-{{! The following component displays Ember's default welcome message. }}
-<WelcomePage />
-{{! Feel free to remove this! }}
+</div>
+<footer class="footer">
+  <span>An open-source project made with ❤️ by <a href="https://twitter.com/agvanherwijnen" class="underline" rel="external">Anne-Greeth</a>. Hosted by <a href="https://www.netlify.com" class="underline" rel="external">Netlify</a>.</span>
+  <span>Wanna run this project yourself, check out the code on the <a href="https://github.com/minthamie/advent-of-code-2023" class="underline" rel="external">GitHub repository</a>.</span>
+</footer>

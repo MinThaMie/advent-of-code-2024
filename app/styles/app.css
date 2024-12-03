@@ -47,41 +47,41 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+}
 
-  & > * {
-    border: 2px dashed var(--theme-color);
-    padding: 20px;
-    border-radius: 8px;
-    height: 154px;
-    width: 154px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.day {
+  border: 2px dashed var(--theme-color);
+  padding: 20px;
+  border-radius: 8px;
+  height: 154px;
+  width: 154px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Mountains of Christmas", serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 48px;
+}
+
+.complete {
+  flex-direction: column;
+  width: auto;
+  height: auto;
+  min-height: 154px;
+  font-family: sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 0;
+
+  .day-title {
     font-family: "Mountains of Christmas", serif;
     font-weight: 700;
-    font-style: normal;
-    font-size: 48px;
+    font-size: 16px;
   }
 
-  & > .complete {
-    flex-direction: column;
-    width: auto;
-    height: auto;
-    min-height: 154px;
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    padding: 0;
-
-    .day-title {
-      font-family: "Mountains of Christmas", serif;
-      font-weight: 700;
-      font-size: 16px;
-    }
-
-    ul {
-      padding-left: 20px;
-    }
+  ul {
+    padding-left: 20px;
   }
 }
 

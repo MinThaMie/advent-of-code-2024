@@ -73,16 +73,16 @@ button {
   font-size: 14px;
   font-weight: 400;
   padding: 0;
+}
 
-  .day-title {
-    font-family: "Mountains of Christmas", serif;
-    font-weight: 700;
-    font-size: 16px;
-  }
+.day-title {
+  font-family: "Mountains of Christmas", serif;
+  font-weight: 700;
+  font-size: 16px;
+}
 
-  ul {
-    padding-left: 20px;
-  }
+.day-solutions {
+  padding-left: 20px;
 }
 
 .front {

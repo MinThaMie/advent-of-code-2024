@@ -136,26 +136,21 @@ export default class PuzzlesDay4 extends Component {
 
   solve2(input) {
     if (input) {
-      if (input) {
-        let totalXMASs = 0;
-        for (let y = 0; y < input.length; y++) {
-          for (let x = 0; x < input[y].length; x++) {
-            let char = input[y][x];
-            if (char == 'A') {
-              totalXMASs +=
-                ((input[y - 1]?.[x - 1] == 'M' &&
-                  input[y + 1]?.[x + 1] == 'S') ||
-                  (input[y - 1]?.[x - 1] == 'S' &&
-                    input[y + 1]?.[x + 1] == 'M')) &&
-                ((input[y - 1]?.[x + 1] == 'M' &&
-                  input[y + 1]?.[x - 1] == 'S') ||
-                  (input[y - 1]?.[x + 1] == 'S' &&
-                    input[y + 1]?.[x - 1] == 'M'));
-            }
+      let totalXMASs = 0;
+      for (let y = 0; y < input.length; y++) {
+        for (let x = 0; x < input[y].length; x++) {
+          let char = input[y][x];
+          if (char == 'A') {
+            totalXMASs +=
+              ((input[y - 1]?.[x - 1] == 'M' && input[y + 1]?.[x + 1] == 'S') ||
+                (input[y - 1]?.[x - 1] == 'S' &&
+                  input[y + 1]?.[x + 1] == 'M')) &&
+              ((input[y - 1]?.[x + 1] == 'M' && input[y + 1]?.[x - 1] == 'S') ||
+                (input[y - 1]?.[x + 1] == 'S' && input[y + 1]?.[x - 1] == 'M'));
           }
         }
-        return totalXMASs;
       }
+      return totalXMASs;
     }
   }
   // END-SNIPPET

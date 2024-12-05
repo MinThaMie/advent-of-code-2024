@@ -50,7 +50,7 @@ export default class PuzzlesDay5 extends Component {
     return this.solve2(this.full);
   }
 
-  // BEGIN-SNIPPET day3
+  // BEGIN-SNIPPET day5
   parseInput(file) {
     let [unparsedRules, unparsedInput] = file.split('\n\n');
     let rules = new Map();

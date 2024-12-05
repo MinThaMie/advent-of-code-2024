@@ -39,7 +39,6 @@ export default class PuzzlesDay4 extends Component {
   }
 
   get fullAnswer1() {
-    // return 1;
     return this.solve1(this.full);
   }
 
@@ -51,7 +50,7 @@ export default class PuzzlesDay4 extends Component {
     return this.solve2(this.full);
   }
 
-  // BEGIN-SNIPPET day3
+  // BEGIN-SNIPPET day4
   parseInput(file) {
     return file.split('\n').map((line) => line.split(''));
   }

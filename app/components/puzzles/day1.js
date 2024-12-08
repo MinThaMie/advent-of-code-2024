@@ -63,7 +63,6 @@ export default class PuzzlesDay1 extends Component {
   }
 
   solve1(input) {
-    console.log(input);
     if (input) {
       let [first, second] = input;
       first.sort();

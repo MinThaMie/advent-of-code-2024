@@ -1,1 +1,17 @@
-7
+<AnimatedContainer>
+    {{#animated-if this.showSolution rules=this.rules}}
+      <div class="back">
+        <button class="back-button" type="button" {{on 'click' this.toggleShowSolution}}></button>
+        <div class="day-title">Day 7</div>
+        <ul class="day-solutions">
+          <li>Part 1: {{this.fullAnswer1}} ({{this.exampleAnswer1}})</li>
+          <li>Part 2: {{this.fullAnswer2}} ({{this.exampleAnswer2}})</li>
+        </ul>
+        <CodeSnippet @name="day7.js"/>
+      </div>
+    {{else}}
+      <button type="button"{{on 'click' this.toggleShowSolution}} class="front">
+        7
+      </button>
+    {{/animated-if}}
+  </AnimatedContainer>

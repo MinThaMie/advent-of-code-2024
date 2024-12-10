@@ -96,7 +96,7 @@ export default class PuzzlesDay8 extends Component {
           if (newbx1 >= 0 && newbx1 < maxX && newby1 >= 0 && newby1 < maxY) {
             set.add(`${newbx1},${newby1}`);
           }
-          if (newbx2 >= 0 && newbx2 < maxX && newby2 >= 0 && newby2 < maxY ) {
+          if (newbx2 >= 0 && newbx2 < maxX && newby2 >= 0 && newby2 < maxY) {
             set.add(`${newbx2},${newby2}`);
           }
         });

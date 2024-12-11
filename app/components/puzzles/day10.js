@@ -39,7 +39,6 @@ export default class PuzzlesDay10 extends Component {
   }
 
   get fullAnswer1() {
-    // return 1;
     return this.solve1(this.full);
   }
 
@@ -48,7 +47,6 @@ export default class PuzzlesDay10 extends Component {
   }
 
   get fullAnswer2() {
-    // return 2;
     return this.solve2(this.full);
   }
 

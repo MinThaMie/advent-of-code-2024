@@ -94,6 +94,11 @@ button {
   background-color: var(--theme-color);
 }
 
+.day.half .front {
+  background: linear-gradient(90deg, var(--theme-color) 50%, #f4f6f8 50%);
+  color: black;
+}
+
 .day.lightgreen {
   border: 2px dashed var(--lightgreen);
 }
@@ -130,7 +135,28 @@ button {
   background-color: var(--blue);
 }
 
-.complete {
+.day.lightgreen.half .front {
+  background: linear-gradient(90deg, var(--lightgreen) 50%, #f4f6f8 50%);
+  color: black;
+}
+
+.day.orange.half .front {
+  background: linear-gradient(90deg, var(--orange) 50%, #f4f6f8 50%);
+  color: black;
+}
+
+.day.darkgreen.half .front {
+  background: linear-gradient(90deg, var(--darkgreen) 50%, #f4f6f8 50%);
+  color: black;
+}
+
+.day.blue.half .front {
+  background: linear-gradient(90deg, var(--blue) 50%, #f4f6f8 50%);
+  color: black;
+}
+
+.complete,
+.half {
   flex-direction: column;
   width: auto;
   height: auto;

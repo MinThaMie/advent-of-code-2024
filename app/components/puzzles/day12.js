@@ -47,7 +47,6 @@ export default class PuzzlesDay12 extends Component {
   }
 
   get fullAnswer2() {
-        return 1;
     return this.solve2(this.full);
   }
 
@@ -112,13 +111,96 @@ export default class PuzzlesDay12 extends Component {
     }
   }
 
-  findDiscountedRegion(
-    [currentX, currentY],
-    input,
-    perimeter,
-    perDir,
-    visited,
-  ) {
+  amountOfCornerS(currentX, currentY, input) {
+    let count = 0;
+    if (
+      input[currentY]?.[currentX + 1] !== input[currentY][currentX] &&
+      input[currentY - 1]?.[currentX] !== input[currentY][currentX]
+    ) {
+      // NE external
+      // ...
+      // ##.
+      // ##.
+      count++;
+    }
+    if (
+      input[currentY - 1]?.[currentX] !== input[currentY][currentX] &&
+      input[currentY]?.[currentX - 1] !== input[currentY][currentX]
+    ) {
+      // NW
+      // ...
+      // .##
+      // .##
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX - 1] !== input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX] !== input[currentY][currentX]
+    ) {
+      // SW
+      // .##
+      // .##
+      // ...
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX + 1] !== input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX] !== input[currentY][currentX]
+    ) {
+      // SE
+      // ##.
+      // ##.
+      // ...
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX + 1] == input[currentY][currentX] &&
+      input[currentY - 1]?.[currentX] == input[currentY][currentX] &&
+      input[currentY - 1]?.[currentX + 1] !== input[currentY][currentX]
+    ) {
+      // Inner corner NE
+      // ##.
+      // ###
+      // ###
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX - 1] == input[currentY][currentX] &&
+      input[currentY - 1]?.[currentX] == input[currentY][currentX] &&
+      input[currentY - 1]?.[currentX - 1] !== input[currentY][currentX]
+    ) {
+      // Inner corner NW
+      // .##
+      // ###
+      // ###
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX + 1] == input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX] == input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX + 1] !== input[currentY][currentX]
+    ) {
+      // Inner corner SE
+      // ###
+      // ###
+      // ##.
+      count++;
+    }
+    if (
+      input[currentY]?.[currentX - 1] == input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX] == input[currentY][currentX] &&
+      input[currentY + 1]?.[currentX - 1] !== input[currentY][currentX]
+    ) {
+      // Inner corner SW
+      // ###
+      // ###
+      // .##
+      count++;
+    }
+    return count;
+  }
+
+  findDiscountedRegion([currentX, currentY], input, perimeter, visited) {
     const directions = [
       [0, -1],
       [0, 1],
@@ -126,35 +208,27 @@ export default class PuzzlesDay12 extends Component {
       [-1, 0],
     ];
     const key = `${currentX},${currentY}`;
+
     const neighbours = directions
       .map(([dx, dy]) => [currentX + dx, currentY + dy])
       .filter(([x, y]) => input[y]?.[x] == input[currentY][currentX]);
+    if (!visited.has(key)) {
+      perimeter.push(this.amountOfCornerS(currentX, currentY, input));
+    }
     visited.add(key);
     const toVisit = neighbours.filter(([x, y]) => !visited.has(`${x},${y}`));
     if (!toVisit) {
-      return [perimeter, perDir, visited];
+      return [perimeter, visited];
     }
     for (let i = 0; i < toVisit.length; i++) {
-      if (perDir == 'x') {
-        if (currentY !== toVisit[i][0]) {
-          perimeter.push(1);
-          perDir == 'y';
-        }
-      } else {
-        if (currentX !== toVisit[i][0]) {
-          perimeter.push(1);
-          perDir == 'x';
-        }
-      }
-      [perimeter, perDir, visited] = this.findDiscountedRegion(
+      [perimeter, visited] = this.findDiscountedRegion(
         toVisit[i],
         input,
         perimeter,
-        perDir,
         visited,
       );
     }
-    return [perimeter, perDir, visited];
+    return [perimeter, visited];
   }
 
   solve2(input) {
@@ -164,19 +238,14 @@ export default class PuzzlesDay12 extends Component {
       for (let y = 0; y < input.length; y++) {
         for (let x = 0; x < input[y].length; x++) {
           if (!visited.has(`${x},${y}`)) {
-            console.log(input[y][x]);
             let perimeter = [];
-            let perDir = 'x';
             let ogSize = visited.size;
-            [perimeter, perDir, visited] = this.findDiscountedRegion(
+            [perimeter, visited] = this.findDiscountedRegion(
               [x, y],
               input,
               perimeter,
-              perDir,
               visited,
             );
-            console.log(perimeter);
-            console.log(perimeter.reduce((sum, val) => sum + val, 0));
             total +=
               (visited.size - ogSize) *
               perimeter.reduce((sum, val) => sum + val, 0);

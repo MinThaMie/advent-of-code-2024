@@ -66,7 +66,7 @@ export default class PuzzlesDay13 extends Component {
         let nA = (xB * (-1 * targetY) - yB * (-1 * targetX)) / dif;
         let nB = (-1 * targetX * yA - -1 * targetY * xA) / dif;
         if (nA % 1 === 0 && nB % 1 === 0) {
-          console.log('add'), (total += nA * 3 + nB);
+          total += nA * 3 + nB;
         }
       });
       return total;
@@ -85,7 +85,7 @@ export default class PuzzlesDay13 extends Component {
         let nA = (xB * (-1 * targetY) - yB * (-1 * targetX)) / dif;
         let nB = (-1 * targetX * yA - -1 * targetY * xA) / dif;
         if (nA % 1 === 0 && nB % 1 === 0) {
-          console.log('add'), (total += nA * 3 + nB);
+          total += nA * 3 + nB;
         }
       });
       return total;

@@ -42,13 +42,8 @@ export default class PuzzlesDay14 extends Component {
     return this.solve1(this.full, 101, 103);
   }
 
-  get exampleAnswer2() {
-    return this.solve2(this.example);
-  }
-
   get fullAnswer2() {
-    return 1;
-    return this.solve2(this.full);
+    return this.solve2(this.full, 101, 103);
   }
 
   // BEGIN-SNIPPET day14
@@ -85,10 +80,64 @@ export default class PuzzlesDay14 extends Component {
     }
   }
 
-  solve2(input) {
+  findRegion([currentX, currentY], input, visited) {
+    const directions = [
+      [0, -1],
+      [0, 1],
+      [1, 0],
+      [-1, 0],
+    ];
+    const key = `${currentX},${currentY}`;
+
+    const neighbours = directions
+      .map(([dx, dy]) => [currentX + dx, currentY + dy])
+      .filter(
+        ([neighX, neighY]) =>
+          input.filter(([x, y, ,]) => x == neighX && y == neighY).length > 0,
+      );
+    visited.add(key);
+    const toVisit = neighbours.filter(([x, y]) => !visited.has(`${x},${y}`));
+    if (!toVisit) {
+      return visited;
+    }
+    for (let i = 0; i < toVisit.length; i++) {
+      visited = this.findRegion(toVisit[i], input, visited);
+    }
+    return visited;
+  }
+
+  printTree(input, width, height) {
+    let grid = [...Array(height)].map(() => Array(width).fill('.'));
+    input.forEach(([x, y, ,]) => {
+      grid[y][x] = '#';
+    });
+    grid.forEach((v) => console.log(...v));
+  }
+  solve2(input, width, height) {
     if (input) {
-      let total = 0;
-      return total;
+      let time = 0;
+      let foundChristmasTree = false;
+      while (!foundChristmasTree) {
+        time++;
+        input = input.map((robot) => {
+          let [x, y, vX, vY] = robot;
+          return [(x + width + vX) % width, (y + height + vY) % height, vX, vY];
+        });
+        let visited = new Set();
+        for (let i = 0; i < input.length; i++) {
+          let [x, y, ,] = input[i];
+          if (!visited.has(`${x},${y}`)) {
+            let neighbours = this.findRegion([x, y], input, new Set());
+            visited = new Set([...visited, ...neighbours]);
+            if (neighbours.size > 100) {
+              foundChristmasTree = true;
+              this.printTree(input, width, height);
+              break;
+            }
+          }
+        }
+      }
+      return time;
     }
   }
   // END-SNIPPET
